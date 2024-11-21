@@ -1,35 +1,45 @@
 PulsarKV = PulsarKV or {}
 
-function PulsarKV.LoadDirectory(path)
-    local files, folders = file.Find(path .. "/*", "LUA")
+PulsarKV.Loaded = false
 
-    for _, fileName in ipairs(files) do
-        local filePath = path .. "/" .. fileName
+local function load()
+    include("pulsarkv/sv_sql.lua")
+    include("pulsarkv/sv_core.lua")
+    include("pulsarkv/sv_net.lua")
+    include("pulsarkv/sh_core.lua")
 
-        if CLIENT then
-            include(filePath)
-        else
-            if fileName:StartWith("cl_") then
-                AddCSLuaFile(filePath)
-            elseif fileName:StartWith("sh_") then
-                AddCSLuaFile(filePath)
-                include(filePath)
-            else
-                include(filePath)
-            end
-        end
+    AddCSLuaFile("pulsarkv/cl_core.lua")
+    AddCSLuaFile("pulsarkv/cl_net.lua")
+    AddCSLuaFile("pulsarkv/sh_core.lua")
+
+    if CLIENT then
+        include("pulsarkv/cl_core.lua")
+        include("pulsarkv/cl_net.lua")
+        include("pulsarkv/sh_core.lua")
     end
 
-    return files, folders
+    PulsarKV.Log("Fully loaded!")
+    PulsarKV.Loaded = true
+    hook.Run("PulsarKV.FullyLoaded")
 end
 
-function PulsarKV.LoadDirectoryRecursive(basePath)
-    local _, folders = PulsarKV.LoadDirectory(basePath)
+--- Logs a message to the console
+--- @param ... any The message to log
+function PulsarKV.Log(...)
+    MsgC(Color(0, 255, 255), "[PulsarKV] ", Color(255, 255, 255), ...)
+    MsgN("")
+end
 
-    for _, folderName in ipairs(folders) do
-        PulsarKV.LoadDirectoryRecursive(basePath .. "/" .. folderName)
+if file.IsDir("pulsar_lib", "LUA") then
+    PulsarKV.Log("PulsarLib detected, waiting for it to load...")
+
+    PulsarKV.UsingPulsarLib = true
+    if PulsarLib.Loaded then
+        load()
     end
-end
 
-PulsarUI.LoadDirectoryRecursive("pulsarkv")
-hook.Run("PulsarKV.FullyLoaded")
+    hook.Add("PulsarLib.Loaded", "PulsarKV.Load", load)
+else
+    PulsarKV.Log("Loading...")
+    load()
+end

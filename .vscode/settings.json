@@ -1,11 +1,15 @@
 {
     "Lua.diagnostics.globals": [
-        "GM"
+        "GM",
+        "mysqloo"
     ],
     "Lua.diagnostics.disable": [
         "duplicate-set-field"
     ],
     "cSpell.words": [
-        "pulsarkv"
+        "mysqloo",
+        "pulsarkv",
+        "superadmin",
+        "tobool"
     ]
 }
