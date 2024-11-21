@@ -34,7 +34,7 @@ jobs:
       run: unzip fastgmad.zip -d fastgmad
 
     - name: Run fastgmad
-      run: ./fastgmad/fastgmad -folder ./ -out output.gma
+      run: ./fastgmad/fastgmad create -folder ./ -out output.gma
 
     - name: Upload GMA to release
       uses: actions/upload-release-asset@v1
