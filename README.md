@@ -14,3 +14,7 @@ If you would like to contribute to this project, please fork, create a new branc
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+### this project is tom.bat approved
+
+![proof](./.github/image.png)
