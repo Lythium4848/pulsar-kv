@@ -40,12 +40,12 @@ jobs:
       run: rm -rf ./.git ./.github ./.vscode ./fastgmad ./fastgmad.zip
 
     - name: Run fastgmad
-      run: ../fastgmad/fastgmad create -folder ./ -out output.gma
+      run: ../fastgmad/fastgmad create -folder ./ -out ../output.gma
 
     - name: Upload GMA to release
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./output.gma
+        asset_path: ../output.gma
         asset_name: output.gma
         asset_content_type: application/octet-stream
