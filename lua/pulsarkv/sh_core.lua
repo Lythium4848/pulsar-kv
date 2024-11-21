@@ -14,9 +14,10 @@ end
 
 ---@enum PulsarKVState
 PulsarKV.State = {
-    SERVER = 0,
-    CLIENT = 1,
-    SHARED = 2
+    SERVER = 0, -- Server Only
+    CLIENT = 1, -- Client Only
+    SHARED = 2, -- Shared between server and client
+    LOCAL = 3 -- Local Client Only (stored in clients cl.db)
 }
 
 
@@ -24,6 +25,7 @@ PulsarKV.State = {
 PulsarKV.From = {
     SERVER = 0,
     CLIENT = 1,
+    LOCAL = 2
 }
 
 ---@enum PulsarKVType

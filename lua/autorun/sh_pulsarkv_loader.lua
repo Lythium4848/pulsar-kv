@@ -3,18 +3,22 @@ PulsarKV = PulsarKV or {}
 PulsarKV.Loaded = false
 
 local function load()
-    include("pulsarkv/sv_sql.lua")
-    include("pulsarkv/sv_core.lua")
-    include("pulsarkv/sv_net.lua")
-    include("pulsarkv/sh_core.lua")
+    if SERVER then
+        include("pulsarkv/sv_sql.lua")
+        include("pulsarkv/sv_core.lua")
+        include("pulsarkv/sv_net.lua")
+        include("pulsarkv/sh_core.lua")
+    end
 
     AddCSLuaFile("pulsarkv/cl_core.lua")
     AddCSLuaFile("pulsarkv/cl_net.lua")
+    AddCSLuaFile("pulsarkv/cl_sql.lua")
     AddCSLuaFile("pulsarkv/sh_core.lua")
 
     if CLIENT then
         include("pulsarkv/cl_core.lua")
         include("pulsarkv/cl_net.lua")
+        include("pulsarkv/cl_sql.lua")
         include("pulsarkv/sh_core.lua")
     end
 

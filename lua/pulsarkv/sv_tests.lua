@@ -20,6 +20,6 @@ PulsarKV.Fetch("vector", PulsarKV.From.SERVER, testPrint)
 PulsarKV.Fetch("angle", PulsarKV.From.SERVER, testPrint)
 PulsarKV.Fetch("color", PulsarKV.From.SERVER, testPrint)
 
-PulsarKV.Delete("string")
+PulsarKV.Delete("string", PulsarKV.State.SHARED)
 
 PulsarKV.Fetch("string", PulsarKV.From.SERVER, PrintTable)
