@@ -34,7 +34,7 @@ jobs:
       run: unzip fastgmad.zip -d fastgmad
 
     - name: Delete unnecessary files
-      run: rm -fc ./.git ./.github ./.vscode
+      run: rm -rf ./.git ./.github ./.vscode
 
     - name: Run fastgmad
       run: ./fastgmad/fastgmad create -folder ./ -out output.gma
