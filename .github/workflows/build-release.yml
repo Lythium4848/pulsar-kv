@@ -42,10 +42,13 @@ jobs:
     - name: Run fastgmad
       run: ../fastgmad/fastgmad create -folder ./ -out ../pulsarkv.gma
 
+    - name: Move GMA
+      run: mv ../pulsarkv.gma ./pulsarkv.gma
+
     - name: Upload GMA to release
       uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          file: ../pulsarkv.gma
+          file: ./pulsarkv.gma
           update_latest_release: true
