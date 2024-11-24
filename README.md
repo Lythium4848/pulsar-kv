@@ -1,5 +1,7 @@
 # PulsarKV
 
+# ⚠️ This project has been merged into [PulsarLib](https://github.com/Pulsar-Dev/pulsar-lib) and is no longer maintained here.
+
 PulsarKV is a key-value store for Garry's Mod. It allows for users to store and retrieve data in a simple manner.
 Users can upload, update, and delete data if they have the correct permissions.
 All data is stored within a MySQL database and gets automatically networked to all clients.
